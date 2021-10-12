@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/circle.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/ic_baseline_add.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/ic_baseline_add_box_70.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/ic_baseline_arrow_left_24.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/ic_baseline_arrow_left_75.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/ic_baseline_remove.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/outline.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/drawable/rectangle.xml" value="0.29814814814814816" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/activity_exercise.xml" value="0.16590678824721378" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/activity_routine.xml" value="0.25" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/activity_setting.xml" value="0.25" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/exercise_report.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/loading.xml" value="0.25" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/more_calendar.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/more_exercise.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/number_setting.xml" value="0.25" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/report.xml" value="0.25" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/report_routine.xml" value="0.26902173913043476" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/routine_exercise.xml" value="0.16590678824721378" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/routine_number_setting.xml" value="0.16590678824721378" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/tfe_od_activity_camera.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/tfe_od_camera_connection_fragment_tracking.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/layout/tfe_od_layout_bottom_sheet.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3764102564102564" />
+        <entry key="..\:/Users/baek in gyu/PesonalTraining_App-modify/app/src/main/res/xml/settings_preference.xml" value="0.24365942028985507" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
