@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1005.iml" filepath="$PROJECT_DIR$/.idea/modules/1005.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/1005.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/1005.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tensorflow-lite/1005.tensorflow-lite.iml" filepath="$PROJECT_DIR$/.idea/modules/tensorflow-lite/1005.tensorflow-lite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2021_1014.iml" filepath="$PROJECT_DIR$/.idea/modules/2021_1014.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/2021_1014.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/2021_1014.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tensorflow-lite/2021_1014.tensorflow-lite.iml" filepath="$PROJECT_DIR$/.idea/modules/tensorflow-lite/2021_1014.tensorflow-lite.iml" />
     </modules>
   </component>
 </project>
