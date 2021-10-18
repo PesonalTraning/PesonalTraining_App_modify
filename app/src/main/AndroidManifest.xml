@@ -43,6 +43,7 @@
 
         <activity android:name=".ExerciseActivity"></activity>
         <activity android:name=".RoutineActivity"></activity>
+        <activity android:name=".Camera_Ex_Activity"/>
 
         <activity android:name=".NpActivity"></activity>
         <activity android:name=".rout_npActivity"/>

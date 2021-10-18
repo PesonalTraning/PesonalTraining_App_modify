@@ -46,11 +46,25 @@ public class RoutineActivity extends AppCompatActivity
         tv_squat_num.setText(squat_num);
         tv_pullup_num.setText(pullup_num);
 
+        Button startButton = findViewById(R.id.routine_start_button); //루틴 시작 버튼
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent exercise_intent = new Intent(RoutineActivity.this,Camera_Ex_Activity.class);
+                exercise_intent.putExtra("situp_count",situp_num);
+                exercise_intent.putExtra("pushup_count",pushup_num);
+                exercise_intent.putExtra("squat_count",squat_num);
+                exercise_intent.putExtra("pullup_count",pullup_num);
+                exercise_intent.putExtra("exercise_name","윗몸일으키기");
+                startActivity(exercise_intent);
+
+            }
+        });
+
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routine);
 
@@ -78,15 +92,26 @@ public class RoutineActivity extends AppCompatActivity
 //        routineplusButton.setOnClickListener(v -> startActivity(new Intent(RoutineActivity.this, Routine_settingActivity.class)));
 
         Button startButton = findViewById(R.id.routine_start_button); //루틴 시작 버튼
-        startButton.setOnClickListener(v -> startActivity(new Intent(RoutineActivity.this, DetectorActivity.class)));
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent exercise_intent = new Intent(RoutineActivity.this, Camera_Ex_Activity.class);
+                exercise_intent.putExtra("situp_count", situp_num);
+                exercise_intent.putExtra("pushup_count", pushup_num);
+                exercise_intent.putExtra("squat_count", squat_num);
+                exercise_intent.putExtra("pullup_count", pullup_num);
+                exercise_intent.putExtra("exercise_name", "윗몸일으키기");
+                startActivity(exercise_intent);
+            }
+        });
 
 
         ImageButton situpButton = findViewById(R.id.sit_up_button); //윗몸 버튼
         situpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent situp_intent = new Intent(RoutineActivity.this,rout_npActivity.class);
-                situp_intent.putExtra("exercise_name","윗몸일으키기");
+                Intent situp_intent = new Intent(RoutineActivity.this, rout_npActivity.class);
+                situp_intent.putExtra("exercise_name", "윗몸일으키기");
                 startActivityForResult(situp_intent, 1);
             }
         });
@@ -105,9 +130,9 @@ public class RoutineActivity extends AppCompatActivity
         pushupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pushup_intent = new Intent(RoutineActivity.this,rout_npActivity.class);
-                pushup_intent.putExtra("exercise_name","팔굽혀펴기");
-                startActivityForResult(pushup_intent,2);
+                Intent pushup_intent = new Intent(RoutineActivity.this, rout_npActivity.class);
+                pushup_intent.putExtra("exercise_name", "팔굽혀펴기");
+                startActivityForResult(pushup_intent, 2);
             }
         });
 
@@ -115,9 +140,9 @@ public class RoutineActivity extends AppCompatActivity
         squatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent squat_intent = new Intent(RoutineActivity.this,rout_npActivity.class);
-                squat_intent.putExtra("exercise_name","스쿼트");
-                startActivityForResult(squat_intent,3);
+                Intent squat_intent = new Intent(RoutineActivity.this, rout_npActivity.class);
+                squat_intent.putExtra("exercise_name", "스쿼트");
+                startActivityForResult(squat_intent, 3);
             }
         });
 
@@ -125,9 +150,9 @@ public class RoutineActivity extends AppCompatActivity
         pullupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pullup_intent = new Intent(RoutineActivity.this,rout_npActivity.class);
-                pullup_intent.putExtra("exercise_name","턱걸이");
-                startActivityForResult(pullup_intent,4);
+                Intent pullup_intent = new Intent(RoutineActivity.this, rout_npActivity.class);
+                pullup_intent.putExtra("exercise_name", "턱걸이");
+                startActivityForResult(pullup_intent, 4);
             }
         });
 
@@ -136,13 +161,60 @@ public class RoutineActivity extends AppCompatActivity
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 TextView tv1 = (TextView) findViewById(R.id.routine_text_send1);
                 tv1.setText(nPicker1.getValue() + "");
+
+                int set_picked = nPicker1.getValue();
+                int time_picked = nPicker2.getValue();
+                String set = String.valueOf(set_picked);
+                String time = String.valueOf(time_picked);
+
+
+                Button startButton = findViewById(R.id.routine_start_button); //루틴 시작 버튼
+                startButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent exercise_intent = new Intent(RoutineActivity.this, Camera_Ex_Activity.class);
+                        exercise_intent.putExtra("situp_count", situp_num);
+                        exercise_intent.putExtra("pushup_count", pushup_num);
+                        exercise_intent.putExtra("squat_count", squat_num);
+                        exercise_intent.putExtra("pullup_count", pullup_num);
+                        exercise_intent.putExtra("exercise_name", "윗몸일으키기");
+                        exercise_intent.putExtra("set_num", set);
+                        exercise_intent.putExtra("time_num", time);
+                        startActivity(exercise_intent);
+                    }
+                });
             }
         });
+
+
         nPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 TextView tv2 = (TextView) findViewById(R.id.routine_text_send2);
                 tv2.setText(nPicker2.getValue() + "");
+
+                int set_picked = nPicker1.getValue();
+                int time_picked = nPicker2.getValue();
+                String set = String.valueOf(set_picked);
+                String time = String.valueOf(time_picked);
+
+                Button startButton = findViewById(R.id.routine_start_button); //루틴 시작 버튼
+                startButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent exercise_intent = new Intent(RoutineActivity.this, Camera_Ex_Activity.class);
+                        exercise_intent.putExtra("situp_count", situp_num);
+                        exercise_intent.putExtra("pushup_count", pushup_num);
+                        exercise_intent.putExtra("squat_count", squat_num);
+                        exercise_intent.putExtra("pullup_count", pullup_num);
+                        exercise_intent.putExtra("exercise_name", "윗몸일으키기");
+                        exercise_intent.putExtra("set_num", set);
+                        exercise_intent.putExtra("time_num", time);
+                        startActivity(exercise_intent);
+
+
+                    }
+                });
             }
         });
     }
