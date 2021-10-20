@@ -58,7 +58,6 @@ public class rout_npActivity extends AppCompatActivity{
             }
         });
 
-
     }
 
 }

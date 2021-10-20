@@ -50,7 +50,7 @@ public class RoutineActivity extends AppCompatActivity
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent exercise_intent = new Intent(RoutineActivity.this,Camera_Ex_Activity.class);
+                Intent exercise_intent = new Intent(RoutineActivity.this,DetectorActivity.class);
                 exercise_intent.putExtra("situp_count",situp_num);
                 exercise_intent.putExtra("pushup_count",pushup_num);
                 exercise_intent.putExtra("squat_count",squat_num);
@@ -95,7 +95,7 @@ public class RoutineActivity extends AppCompatActivity
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent exercise_intent = new Intent(RoutineActivity.this, Camera_Ex_Activity.class);
+                Intent exercise_intent = new Intent(RoutineActivity.this, DetectorActivity.class);
                 exercise_intent.putExtra("situp_count", situp_num);
                 exercise_intent.putExtra("pushup_count", pushup_num);
                 exercise_intent.putExtra("squat_count", squat_num);
@@ -172,7 +172,7 @@ public class RoutineActivity extends AppCompatActivity
                 startButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent exercise_intent = new Intent(RoutineActivity.this, Camera_Ex_Activity.class);
+                        Intent exercise_intent = new Intent(RoutineActivity.this, DetectorActivity.class);
                         exercise_intent.putExtra("situp_count", situp_num);
                         exercise_intent.putExtra("pushup_count", pushup_num);
                         exercise_intent.putExtra("squat_count", squat_num);
@@ -202,7 +202,7 @@ public class RoutineActivity extends AppCompatActivity
                 startButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent exercise_intent = new Intent(RoutineActivity.this, Camera_Ex_Activity.class);
+                        Intent exercise_intent = new Intent(RoutineActivity.this, DetectorActivity.class);
                         exercise_intent.putExtra("situp_count", situp_num);
                         exercise_intent.putExtra("pushup_count", pushup_num);
                         exercise_intent.putExtra("squat_count", squat_num);
