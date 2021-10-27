@@ -17,10 +17,12 @@
 package org.tensorflow.lite.examples.detection;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -34,16 +36,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.SystemClock;
 import android.os.Trace;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Size;
 import android.view.Surface;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,6 +56,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
 import org.tensorflow.lite.examples.detection.env.ImageUtils;
 import org.tensorflow.lite.examples.detection.env.Logger;
+import android.annotation.SuppressLint;
+import android.os.Message;
 
 public abstract class CameraActivity extends AppCompatActivity
     implements OnImageAvailableListener,
@@ -102,6 +107,10 @@ public abstract class CameraActivity extends AppCompatActivity
   String set_num = "00";
   String count_num = "00";
 
+  private Chronometer chronometer;
+  private boolean running;
+  private long pauseOffset;
+  private Chronometer calculator;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -187,7 +196,7 @@ public abstract class CameraActivity extends AppCompatActivity
 //    minusImageView.setOnClickListener(this);
 
     tv_exercise_name = (TextView) findViewById(R.id.exercise_name);
-    tv_time_num = (TextView) findViewById(R.id.time);
+    //tv_time_num = (TextView) findViewById(R.id.time);
     tv_set_num = (TextView) findViewById(R.id.set);
     tv_count_num = (TextView) findViewById(R.id.count);
 
@@ -196,12 +205,63 @@ public abstract class CameraActivity extends AppCompatActivity
     //String count_num = name_intent.getStringExtra("situp_count");
     String count_num = name_intent.getStringExtra("count_num");
     String set_num = name_intent.getStringExtra("set_num");
-    String time_num = name_intent.getStringExtra("time_num");
+    //String time_num = name_intent.getStringExtra("time_num");
 
     tv_exercise_name.setText(exercise_name);
-    tv_time_num.setText(time_num);
+   // tv_time_num.setText(time_num);
     tv_set_num.setText(set_num);
     tv_count_num.setText(count_num);
+
+    chronometer = findViewById(R.id.chronometer);
+    chronometer.setFormat("%s");
+
+    Button startBtn = findViewById(R.id.startBtn);
+    Button pauseBtn = findViewById(R.id.pauseBtn);
+
+//    new Handler().postDelayed(new Runnable(){
+//      @Override
+//      public void run(){
+//        startBtn.setOnClickListener(new View.OnClickListener() {
+//          @Override
+//          public void onClick(View view) {
+//            if(!running){
+//              chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+//              chronometer.start();
+//              running = true;
+//            }
+//          }
+//        });
+//      }
+//    },2000);
+
+    startBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if(!running){
+          chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+          chronometer.start();
+          running = true;
+        }
+      }
+    });
+    //중지
+
+    pauseBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if(running){
+          chronometer.stop();
+          pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+          running = false;
+
+          int time = (int) (SystemClock.elapsedRealtime() - chronometer.getBase())/1000;;
+          String string_time = String.valueOf(time);
+
+          //tv_exercise_name.setText(string_time);
+
+        }
+      }
+    });
 
   }
 

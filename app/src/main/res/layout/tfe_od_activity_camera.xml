@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
  Copyright 2019 The TensorFlow Authors. All Rights Reserved.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,21 +16,19 @@
 -->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00000000">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
         android:orientation="vertical">
 
-
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,17 +47,28 @@
                 android:orientation="horizontal"
                 >
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="0dp"
-                android:layout_weight="1.5"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/layout"
-                android:gravity="center"
-                android:text="00:00"
-                android:textColor="#ffffff"
-                android:textSize="25dp" />
+                <Chronometer
+                    android:id="@+id/chronometer"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/layout"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"/>
+
+<!--            <TextView-->
+<!--                android:id="@+id/timeView"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="1.5"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:background="@drawable/layout"-->
+<!--                android:gravity="center"-->
+<!--                android:text="00:00"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:textSize="25dp" />-->
 
             <TextView
                 android:id="@+id/exercise_name"
@@ -68,7 +78,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/layout"
                 android:gravity="center"
-                android:text="윗몸일으키기"
+                android:text="00"
                 android:textColor="#ffffff"
                 android:textSize="25dp" />
 
@@ -102,6 +112,33 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:src="@drawable/tfl2_logo" />-->
         </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/startBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout"
+                android:text="start"
+                android:textColor="#ffffff"/>
+
+            <Button
+                android:id="@+id/pauseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout"
+                android:text="pause"
+                android:textColor="#ffffff"
+                />
+
+
+
+        </LinearLayout>
 
     </RelativeLayout>
 
