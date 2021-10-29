@@ -34,6 +34,7 @@ import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
@@ -41,6 +42,8 @@ import android.os.Trace;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+
+import android.speech.tts.TextToSpeech;
 import android.util.Size;
 import android.view.Surface;
 import android.view.View;
@@ -52,15 +55,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.EditText;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
+import java.util.Locale;
+
 import org.tensorflow.lite.examples.detection.env.ImageUtils;
 import org.tensorflow.lite.examples.detection.env.Logger;
 import android.annotation.SuppressLint;
 import android.os.Message;
 
 public abstract class CameraActivity extends AppCompatActivity
-    implements OnImageAvailableListener,
+        implements OnImageAvailableListener,
         Camera.PreviewCallback,
         CompoundButton.OnCheckedChangeListener,
         View.OnClickListener {
@@ -96,6 +102,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private TextView tv_time_num;
   private TextView tv_set_num;
   private TextView tv_count_num;
+  private TextView tv_countdown;
 
   private TextView tv_situp_num;
   private TextView tv_pushup_num;
@@ -111,6 +118,8 @@ public abstract class CameraActivity extends AppCompatActivity
   private boolean running;
   private long pauseOffset;
   private Chronometer calculator;
+
+  private TextToSpeech tts;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -199,6 +208,7 @@ public abstract class CameraActivity extends AppCompatActivity
     //tv_time_num = (TextView) findViewById(R.id.time);
     tv_set_num = (TextView) findViewById(R.id.set);
     tv_count_num = (TextView) findViewById(R.id.count);
+    tv_countdown = (TextView) findViewById(R.id.countdown);
 
     Intent name_intent = getIntent();
     String exercise_name = name_intent.getStringExtra("exercise_name");
@@ -208,9 +218,10 @@ public abstract class CameraActivity extends AppCompatActivity
     //String time_num = name_intent.getStringExtra("time_num");
 
     tv_exercise_name.setText(exercise_name);
-   // tv_time_num.setText(time_num);
+    // tv_time_num.setText(time_num);
     tv_set_num.setText(set_num);
     tv_count_num.setText(count_num);
+    tv_countdown.setText("3");
 
     chronometer = findViewById(R.id.chronometer);
     chronometer.setFormat("%s");
@@ -218,33 +229,60 @@ public abstract class CameraActivity extends AppCompatActivity
     Button startBtn = findViewById(R.id.startBtn);
     Button pauseBtn = findViewById(R.id.pauseBtn);
 
-//    new Handler().postDelayed(new Runnable(){
-//      @Override
-//      public void run(){
-//        startBtn.setOnClickListener(new View.OnClickListener() {
-//          @Override
-//          public void onClick(View view) {
-//            if(!running){
-//              chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
-//              chronometer.start();
-//              running = true;
-//            }
-//          }
-//        });
-//      }
-//    },2000);
+    tts = new TextToSpeech(this, new TextToSpeech.OnInitListener()
+    {
+      @Override
+      public void onInit(int status) {
+        if(status == TextToSpeech.SUCCESS) {
+          int result = tts.setLanguage(Locale.ENGLISH);
+
+          if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+          {
+            Toast.makeText(CameraActivity.this, "지원하지 않는 언어입니다", Toast.LENGTH_SHORT).show();
+          }
+        }
+      }
+    });
 
     startBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if(!running){
-          chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
-          chronometer.start();
-          running = true;
-        }
+        tts.speak("3",TextToSpeech.QUEUE_FLUSH,null);
+        tv_countdown.setVisibility(View.VISIBLE);
+        tv_countdown.setText("3");
+
+        new Handler().postDelayed(new Runnable(){
+          @Override
+          public void run()
+          {
+            tts.speak("2",TextToSpeech.QUEUE_FLUSH,null);
+            tv_countdown.setText("2");
+            new Handler().postDelayed(new Runnable(){
+              @Override
+              public void run()
+              {
+                tts.speak("1",TextToSpeech.QUEUE_FLUSH,null);
+                tv_countdown.setText("1");
+
+                if(!running){
+                  chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+                  chronometer.start();
+                  running = true;
+                  new Handler().postDelayed(new Runnable(){
+                    @Override
+                    public void run(){
+                      tv_countdown.setVisibility(View.INVISIBLE);
+                    }
+                  },1000);
+                }
+              }
+            },1000);
+
+          }
+        },1000);
       }
     });
-    //중지
+
 
     pauseBtn.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -305,21 +343,21 @@ public abstract class CameraActivity extends AppCompatActivity
     yRowStride = previewWidth;
 
     imageConverter =
-        new Runnable() {
-          @Override
-          public void run() {
-            ImageUtils.convertYUV420SPToARGB8888(bytes, previewWidth, previewHeight, rgbBytes);
-          }
-        };
+            new Runnable() {
+              @Override
+              public void run() {
+                ImageUtils.convertYUV420SPToARGB8888(bytes, previewWidth, previewHeight, rgbBytes);
+              }
+            };
 
     postInferenceCallback =
-        new Runnable() {
-          @Override
-          public void run() {
-            camera.addCallbackBuffer(bytes);
-            isProcessingFrame = false;
-          }
-        };
+            new Runnable() {
+              @Override
+              public void run() {
+                camera.addCallbackBuffer(bytes);
+                isProcessingFrame = false;
+              }
+            };
     processImage();
   }
 
@@ -353,30 +391,30 @@ public abstract class CameraActivity extends AppCompatActivity
       final int uvPixelStride = planes[1].getPixelStride();
 
       imageConverter =
-          new Runnable() {
-            @Override
-            public void run() {
-              ImageUtils.convertYUV420ToARGB8888(
-                  yuvBytes[0],
-                  yuvBytes[1],
-                  yuvBytes[2],
-                  previewWidth,
-                  previewHeight,
-                  yRowStride,
-                  uvRowStride,
-                  uvPixelStride,
-                  rgbBytes);
-            }
-          };
+              new Runnable() {
+                @Override
+                public void run() {
+                  ImageUtils.convertYUV420ToARGB8888(
+                          yuvBytes[0],
+                          yuvBytes[1],
+                          yuvBytes[2],
+                          previewWidth,
+                          previewHeight,
+                          yRowStride,
+                          uvRowStride,
+                          uvPixelStride,
+                          rgbBytes);
+                }
+              };
 
       postInferenceCallback =
-          new Runnable() {
-            @Override
-            public void run() {
-              image.close();
-              isProcessingFrame = false;
-            }
-          };
+              new Runnable() {
+                @Override
+                public void run() {
+                  image.close();
+                  isProcessingFrame = false;
+                }
+              };
 
       processImage();
     } catch (final Exception e) {
@@ -439,7 +477,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
   @Override
   public void onRequestPermissionsResult(
-      final int requestCode, final String[] permissions, final int[] grantResults) {
+          final int requestCode, final String[] permissions, final int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     if (requestCode == PERMISSIONS_REQUEST) {
       if (allPermissionsGranted(grantResults)) {
@@ -474,7 +512,7 @@ public abstract class CameraActivity extends AppCompatActivity
                 CameraActivity.this,
                 "Camera permission is required for this demo",
                 Toast.LENGTH_LONG)
-            .show();
+                .show();
       }
       requestPermissions(new String[] {PERMISSION_CAMERA}, PERMISSIONS_REQUEST);
     }
@@ -482,7 +520,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
   // Returns true if the device supports the required hardware level, or better.
   private boolean isHardwareLevelSupported(
-      CameraCharacteristics characteristics, int requiredLevel) {
+          CameraCharacteristics characteristics, int requiredLevel) {
     int deviceLevel = characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
     if (deviceLevel == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {
       return requiredLevel == deviceLevel;
@@ -504,7 +542,7 @@ public abstract class CameraActivity extends AppCompatActivity
         }
 
         final StreamConfigurationMap map =
-            characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+                characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
         if (map == null) {
           continue;
@@ -514,9 +552,9 @@ public abstract class CameraActivity extends AppCompatActivity
         // This should help with legacy situations where using the camera2 API causes
         // distorted or otherwise broken previews.
         useCamera2API =
-            (facing == CameraCharacteristics.LENS_FACING_EXTERNAL)
-                || isHardwareLevelSupported(
-                    characteristics, CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
+                (facing == CameraCharacteristics.LENS_FACING_EXTERNAL)
+                        || isHardwareLevelSupported(
+                        characteristics, CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
         LOGGER.i("Camera API lv2?: %s", useCamera2API);
         return cameraId;
       }
@@ -533,24 +571,24 @@ public abstract class CameraActivity extends AppCompatActivity
     Fragment fragment;
     if (useCamera2API) {
       CameraConnectionFragment camera2Fragment =
-          CameraConnectionFragment.newInstance(
-              new CameraConnectionFragment.ConnectionCallback() {
-                @Override
-                public void onPreviewSizeChosen(final Size size, final int rotation) {
-                  previewHeight = size.getHeight();
-                  previewWidth = size.getWidth();
-                  CameraActivity.this.onPreviewSizeChosen(size, rotation);
-                }
-              },
-              this,
-              getLayoutId(),
-              getDesiredPreviewFrameSize());
+              CameraConnectionFragment.newInstance(
+                      new CameraConnectionFragment.ConnectionCallback() {
+                        @Override
+                        public void onPreviewSizeChosen(final Size size, final int rotation) {
+                          previewHeight = size.getHeight();
+                          previewWidth = size.getWidth();
+                          CameraActivity.this.onPreviewSizeChosen(size, rotation);
+                        }
+                      },
+                      this,
+                      getLayoutId(),
+                      getDesiredPreviewFrameSize());
 
       camera2Fragment.setCamera(cameraId);
       fragment = camera2Fragment;
     } else {
       fragment =
-          new LegacyCameraConnectionFragment(this, getLayoutId(), getDesiredPreviewFrameSize());
+              new LegacyCameraConnectionFragment(this, getLayoutId(), getDesiredPreviewFrameSize());
     }
 
     getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();

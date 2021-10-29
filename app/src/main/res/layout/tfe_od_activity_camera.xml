@@ -136,7 +136,23 @@
                 android:textColor="#ffffff"
                 />
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            >
+
+            <TextView
+                android:id="@+id/countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textSize="50dp"
+                android:textColor="#ffffff"
+                />
 
         </LinearLayout>
 
