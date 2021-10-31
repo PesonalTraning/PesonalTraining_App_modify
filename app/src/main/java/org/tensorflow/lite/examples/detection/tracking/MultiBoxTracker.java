@@ -27,13 +27,16 @@ import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.TypedValue;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+
 import org.tensorflow.lite.examples.detection.env.BorderedText;
 import org.tensorflow.lite.examples.detection.env.ImageUtils;
 import org.tensorflow.lite.examples.detection.env.Logger;
 import org.tensorflow.lite.examples.detection.tflite.Classifier.Recognition;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 
 /** A tracker that handles non-max suppression and matches existing objects to new detections. */
 public class MultiBoxTracker {
@@ -195,6 +198,9 @@ public class MultiBoxTracker {
       trackedRecognition.title = potential.second.getTitle();
       trackedRecognition.color = COLORS[trackedObjects.size()];
       trackedObjects.add(trackedRecognition);
+
+      logger.i("Detect object : " + trackedRecognition.title);
+      logger.i("Detect confidence: " + trackedRecognition.detectionConfidence);
 
       if (trackedObjects.size() >= COLORS.length) {
         break;
