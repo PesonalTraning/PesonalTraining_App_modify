@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.util.TypedValue;
 
+import org.tensorflow.lite.examples.detection.CameraActivity;
 import org.tensorflow.lite.examples.detection.env.BorderedText;
 import org.tensorflow.lite.examples.detection.env.ImageUtils;
 import org.tensorflow.lite.examples.detection.env.Logger;
@@ -199,9 +200,10 @@ public class MultiBoxTracker {
       trackedRecognition.color = COLORS[trackedObjects.size()];
       trackedObjects.add(trackedRecognition);
 
-      logger.i("Detect object : " + trackedRecognition.title);
-      logger.i("Detect confidence: " + trackedRecognition.detectionConfidence);
-
+      if(trackedRecognition.detectionConfidence > 0){
+        CameraActivity.setYoloConfidence(trackedRecognition.title, trackedRecognition.detectionConfidence);
+      }
+      
       if (trackedObjects.size() >= COLORS.length) {
         break;
       }
