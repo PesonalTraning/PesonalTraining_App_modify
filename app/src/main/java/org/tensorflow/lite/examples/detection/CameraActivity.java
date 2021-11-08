@@ -280,32 +280,6 @@ public abstract class CameraActivity extends AppCompatActivity
                   chronometer.start();
                   running = true;
 
-
-                      //변수 필요한 부분.
-                      //detectionConfidence
-                      //title
-//
-//                          if(int_count_num > 0) {
-//                            int_count_num--;
-//                          }
-//                          else if(int_count_num == 0) {
-//                            int_set_num--;
-//                            int_count_num = max_count_num;
-//                            // 시간 정지
-//                            // 30초 휴식시간 추가
-//                          }
-//                          if(int_set_num == 0 && int_count_num ==0){
-//                            Intent exercise_intent = new Intent(CameraActivity.this, ReportActivity.class);
-////                            exercise_intent.putExtra("exercise_name", Exercise_name);
-////                            exercise_intent.putExtra("count_num", count);
-////                            exercise_intent.putExtra("set_num", set);
-////                            exercise_intent.putExtra("time_num", time);
-//                            startActivity(exercise_intent);
-//                          }
-//                          tv_count_num.setText(int_count_num + "");
-//                          tv_set_num.setText(int_set_num + "");
-                  // 동작 함수 실행 //
-
                   new Handler().postDelayed(new Runnable(){
                     @Override
                     public void run(){
@@ -316,9 +290,6 @@ public abstract class CameraActivity extends AppCompatActivity
                         public void run(){
                           if(true){
                             handler.postDelayed(this,1000);
-                            //tv_exercise_name.setText(title);
-//                            String percentage = String.format("%.2f",confidence);
-//                            tv_exercise_name.setText(percentage);
                             if( confidence > 0.7 && flag[0] == false) //검출 조건 부분
                               // 여기에 검출 원하는 운동 비교 검출 값 = title / 선택한 운동 exercise_name
                             {
@@ -333,6 +304,24 @@ public abstract class CameraActivity extends AppCompatActivity
                               else if(int_count_num == 0) {
                                 int_set_num--;
                                 int_count_num = max_count_num;
+                                tts.speak("휴식시간입니다.",TextToSpeech.QUEUE_FLUSH,null);
+                                chronometer.stop();
+                                pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+
+                                int i = 10;
+                                while(i>0)
+                                {
+                                  try { Thread.sleep(1000);}
+                                  catch (InterruptedException e) { e.printStackTrace(); }
+                                  if(i==3){tts.speak("3",TextToSpeech.QUEUE_FLUSH,null);}
+                                  else if(i==2){tts.speak("2",TextToSpeech.QUEUE_FLUSH,null);}
+                                  else if(i==1){tts.speak("1",TextToSpeech.QUEUE_FLUSH,null);}
+                                  i--;
+                                }
+
+                                chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+                                chronometer.start();
+                                tts.speak("시작.",TextToSpeech.QUEUE_FLUSH,null);
                                 // 시간 정지
                                 // 30초 휴식시간 추가
                               }
