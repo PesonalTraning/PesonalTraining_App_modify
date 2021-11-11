@@ -326,11 +326,14 @@ public abstract class CameraActivity extends AppCompatActivity
                                 // 30초 휴식시간 추가
                               }
                               if(int_set_num == 0 && int_count_num ==0){
+                                int time = (int) (SystemClock.elapsedRealtime() - chronometer.getBase())/1000;;
+                                String string_time = String.valueOf(time);
+
                                 Intent exercise_intent = new Intent(CameraActivity.this, ReportActivity.class);
-//                            exercise_intent.putExtra("exercise_name", Exercise_name);
-//                            exercise_intent.putExtra("count_num", count);
-//                            exercise_intent.putExtra("set_num", set);
-//                            exercise_intent.putExtra("time_num", time);
+                                exercise_intent.putExtra("exercise_name", exercise_name);
+                                exercise_intent.putExtra("count_num", count_num);
+                                exercise_intent.putExtra("set_num", set_num);
+                                exercise_intent.putExtra("time_num", string_time);
                                 startActivity(exercise_intent);
                               }
                               tv_count_num.setText(int_count_num + "");

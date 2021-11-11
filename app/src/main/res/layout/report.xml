@@ -46,6 +46,7 @@
             tools:layout_editor_absoluteX="16dp">
 
             <TextView
+                android:id="@+id/exercise_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -71,6 +72,7 @@
                 android:textSize="40dp"></TextView>
 
             <TextView
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -98,6 +100,7 @@
                 android:textSize="40dp"></TextView>
 
             <TextView
+                android:id="@+id/set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -125,6 +128,7 @@
                 android:textSize="40dp"></TextView>
 
             <TextView
+                android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -142,24 +146,9 @@
             android:gravity="center"
             android:paddingBottom="15dp"
             app:layout_constraintTop_toBottomOf="@+id/number_layout"
-            tools:layout_editor_absoluteX="16dp">
+            tools:layout_editor_absoluteX="16dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="소모 칼로리"
-                android:textSize="40dp"></TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:text="000"
-                android:textSize="40dp"></TextView>
             <!-- 위에 숫자도 마찬가지 -->
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/report_button_layout"

@@ -33,7 +33,7 @@ public class NpActivity extends AppCompatActivity {
         startButton.setOnClickListener(v -> startActivity(new Intent(NpActivity.this, DetectorActivity.class)));
 
         nPicker1 = (NumberPicker) findViewById(R.id.pushup_count_np);
-        nPicker1.setMinValue(10);
+        nPicker1.setMinValue(1);
         nPicker1.setMaxValue(40);
 
         nPicker2 = (NumberPicker) findViewById(R.id.pushup_time_np);
@@ -42,7 +42,7 @@ public class NpActivity extends AppCompatActivity {
 
 
         nPicker3 = (NumberPicker) findViewById(R.id.pushup_set_np);
-        nPicker3.setMinValue(1);
+        nPicker3.setMinValue(0);
         nPicker3.setMaxValue(5);
 
 

@@ -47,28 +47,32 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/situp"/>
+                    android:src="@drawable/situps"
+                    android:background="@drawable/layout_black"/>
 
                 <ImageButton
                     android:id="@+id/push_up_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/pushup"/>
+                    android:src="@drawable/pushups"
+                    android:background="@drawable/layout_black"/>
 
                 <ImageButton
                     android:id="@+id/squat_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/squat"/>
+                    android:src="@drawable/squats"
+                    android:background="@drawable/layout_black"/>
 
                 <ImageButton
                     android:id="@+id/pull_up_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/pullup"/>
+                    android:src="@drawable/pullups"
+                    android:background="@drawable/layout_black"/>
 
         </LinearLayout>
 
@@ -85,7 +89,8 @@
                     android:layout_weight="1"
                     android:text="00"
                     android:textSize="30dp"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:background="@drawable/layout_black"/>
 
                 <TextView
                     android:id="@+id/push_up_count"
@@ -94,7 +99,8 @@
                     android:layout_weight="1"
                     android:text="00"
                     android:textSize="30dp"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:background="@drawable/layout_black"/>
 
                 <TextView
                     android:id="@+id/squat_count"
@@ -103,7 +109,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="00"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:background="@drawable/layout_black"/>
 
                 <TextView
                     android:id="@+id/pull_up_count"
@@ -112,19 +119,11 @@
                     android:layout_weight="1"
                     android:text="00"
                     android:textSize="30dp"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:background="@drawable/layout_black"/>
 
 
             </LinearLayout>
-<!--            <ImageButton-->
-<!--                android:id="@+id/exercise_plus_Button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:background="@drawable/ic_baseline_add_box_70"-->
-<!--                android:scaleType="fitXY"/>-->
         </LinearLayout>
 
         <LinearLayout
@@ -219,6 +218,7 @@
         android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="1dp">
 

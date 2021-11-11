@@ -17,7 +17,8 @@
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintVertical_chainStyle="spread"
         android:src="@drawable/situp"
-        android:padding="0sp"
+        android:background="@drawable/outline"
+        android:padding="3dp"
         android:scaleType="fitXY" />
 
     <ImageButton
@@ -31,7 +32,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
         android:src="@drawable/pushup"
-        android:padding="0sp"
+        android:background="@drawable/outline"
+        android:padding="3dp"
         android:scaleType="fitXY" />
 
     <ImageButton
@@ -45,7 +47,8 @@
         app:layout_constraintTop_toBottomOf="@+id/situpButton"
         app:layout_constraintVertical_bias="0.5"
         android:src="@drawable/squat"
-        android:padding="0sp"
+        android:background="@drawable/outline"
+        android:padding="3dp"
         android:scaleType="fitXY" />
 
     <ImageButton
@@ -59,7 +62,8 @@
         app:layout_constraintTop_toBottomOf="@+id/pushupButton"
         app:layout_constraintVertical_bias="0.5"
         android:src="@drawable/pullup"
-        android:padding="0sp"
+        android:background="@drawable/outline"
+        android:padding="3dp"
         android:scaleType="fitXY" />
 
 
@@ -77,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/layout_black"
             android:text="my" />
 
         <Button
@@ -84,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/layout_black"
             android:text="운동" />
 
         <Button
@@ -91,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/layout_black"
             android:text="루틴" />
 
         <Button
@@ -98,6 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/layout_black"
             android:text="설정" />
 
     </LinearLayout>
